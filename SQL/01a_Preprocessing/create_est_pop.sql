@@ -9,7 +9,7 @@ CREATE TABLE public.est_pop
   CONSTRAINT est_pop_pkey PRIMARY KEY (zone_id)
 );
 
---debug view for viewing OD flows in GIS tools
+--debug view for viewing in GIS tools
 CREATE OR REPLACE VIEW est_pop_geom AS 
  SELECT *
    FROM est_pop
