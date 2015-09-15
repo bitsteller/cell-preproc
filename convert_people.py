@@ -7,7 +7,7 @@ def init():
 	conn = util.db_connect()
 	cur = conn.cursor()
 
-def calculate_cell_od_flow(cellid):
+def calculate_population(cellid):
 	"""Converts population statisicts from a voronoi cell to statistics zones
 	based on the share of the area that zones cells cover.
 	Args:
