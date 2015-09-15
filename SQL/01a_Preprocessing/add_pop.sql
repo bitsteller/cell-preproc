@@ -4,7 +4,7 @@
 
 WITH new_values (zone_id, population) as (
   values 
-     (%(antenna_id)s, %(population)s)
+     (%(zone_id)s, %(population)s)
 ),
 upsert as
 ( 

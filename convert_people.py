@@ -49,7 +49,7 @@ def upload_population(args):
 	population = sum(population)
 	
 	data = {"zone_id": zone_id,
-			"flow": population}
+			"population": population}
 
 	cur.execute(open("SQL/01a_Preprocessing/add_pop.sql", 'r').read(), data)
 	conn.commit()
