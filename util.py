@@ -414,7 +414,7 @@ if not hasattr(config, "CELLS"):
 	try:
 		conn = db_connect()
 		cur = conn.cursor()
-		cur.execute("SELECT MIN(id) AS min, MAX(id) AS max FROM ant_pos")
+		cur.execute("SELECT MIN(id) AS min, MAX(id) AS max FROM eant_pos")
 		mincell, maxcell = cur.fetchone()
 		config.CELLS = range(mincell, maxcell+1)
 		conn.close()
