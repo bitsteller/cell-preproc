@@ -5,15 +5,7 @@ DROP TABLE IF EXISTS public.est_pop CASCADE;
 CREATE TABLE public.est_pop
 (
   zone_id integer NOT NULL,
-  zone_id double precision,
-  ald0_6  double precision,
-  ald7_15 double precision,
-  ald16_19 double precision,
-  ald20_24 double precision,
-  ald25_44 double precision,
-  ald45_64 double precision,
-  ald65_w double precision,
-  totbef double precision,
+  population double precision,
   CONSTRAINT est_pop_pkey PRIMARY KEY (zone_id)
 );
 
