@@ -8,7 +8,7 @@ WITH new_values (zone_id, population) as (
 ),
 upsert as
 ( 
-    update od m 
+    update est_pop m 
         set flow = m.population + nv.population
     FROM new_values nv
     WHERE m.zone_id
@@ -18,5 +18,5 @@ INSERT INTO est_pop (zone_id, population)
 SELECT *
 FROM new_values
 WHERE NOT EXISTS (SELECT 1 
-                  FROM od up 
+                  FROM est_pop up 
                   WHERE up.zone_id = new_values.zone_id)
