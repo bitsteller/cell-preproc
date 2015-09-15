@@ -15,7 +15,7 @@ conn.commit()
 
 print("Calculating Voronoi partition...")
 cur.execute("	DROP TABLE IF EXISTS ant_pos_ordered;\
-        		CREATE TEMPORARY TABLE ant_pos_ordered (LIKE ant_pos);\
-       			INSERT INTO ant_pos_ordered SELECT * FROM ant_pos wp ORDER BY id ASC;")
+        		CREATE TEMPORARY TABLE ant_pos_ordered (LIKE eant_pos);\
+       			INSERT INTO ant_pos_ordered SELECT * FROM eant_pos wp ORDER BY id ASC;")
 cur.execute("INSERT INTO voronoi SELECT v.id, v.geom FROM voronoi('ant_pos_ordered', 'geom') AS v(id numeric(10,0), geom geometry(Polygon,4326))")
 conn.commit()
