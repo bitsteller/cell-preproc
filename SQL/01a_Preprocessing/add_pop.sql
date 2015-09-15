@@ -11,7 +11,7 @@ upsert as
     update est_pop m 
         set flow = m.population + nv.population
     FROM new_values nv
-    WHERE m.zone_id
+    WHERE m.zone_id = nv.zone_id
     RETURNING m.*
 )
 INSERT INTO est_pop (zone_id, population)
