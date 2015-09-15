@@ -19,7 +19,10 @@ def calculate_population(cellid):
 	result = []
 
 	cur.execute("SELECT population FROM cell_est_pop WHERE cell_id = %s", (cellid,))
-	cell_pop = cur.fetchone()[0]
+	cell_pop_row = cur.fetchone()
+	if cell_pop_row == None:
+		return result # cell does not exist, ignore
+	cell_pop = cell_pop_row[0]
 
 	cur.execute("SELECT zone_id, share FROM cell_zones WHERE cell_id = %s", (cellid,))
 	coverages = cur.fetchall()
