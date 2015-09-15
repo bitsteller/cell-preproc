@@ -9,7 +9,7 @@ WITH new_values (zone_id, population) as (
 upsert as
 ( 
     update od m 
-        set flow = m.flow + nv.flow
+        set flow = m.population + nv.population
     FROM new_values nv
     WHERE m.zone_id
     RETURNING m.*
