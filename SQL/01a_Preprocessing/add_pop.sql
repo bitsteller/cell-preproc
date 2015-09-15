@@ -1,6 +1,5 @@
 -- UPSERTs popuplation statistics
 -- adds a population (different age groups and total) to the zone
--- if a row for the given od pair does not yet exist, a new row is created (UPSERT)
 
 WITH new_values (zone_id, population) as (
   values 
@@ -9,7 +8,7 @@ WITH new_values (zone_id, population) as (
 upsert as
 ( 
     update est_pop m 
-        set flow = m.population + nv.population
+        set population = m.population + nv.population
     FROM new_values nv
     WHERE m.zone_id = nv.zone_id
     RETURNING m.*
