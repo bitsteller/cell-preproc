@@ -69,6 +69,10 @@ if __name__ == '__main__':
 	mconn = util.db_connect()
 	mcur = mconn.cursor()
 
+	print("Creating cell_est_pop view...")
+	mcur.execute(open("SQL/01a_Preprocessing/create_cell_est_pop_view.sql", 'r').read())
+	mconn.commit()
+
 	print("Creating est_pop table...")
 	mcur.execute(open("SQL/01a_Preprocessing/create_est_pop.sql", 'r').read())
 	mconn.commit()
