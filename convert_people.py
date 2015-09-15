@@ -34,7 +34,7 @@ def calculate_population(cellid):
 
 	return result
 
-def upload_zone_population(args):
+def upload_population(args):
 	"""Aggregates population and adds the flows to the database, 
 	by updateing an exisiting zone or createing a new one if no row exisits.
 	Args:
