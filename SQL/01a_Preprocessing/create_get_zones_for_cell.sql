@@ -2,7 +2,7 @@
 -- returns a table containing all intersecting zone and their share of the area of the cell that they cover
 -- the sum of all shares adds up to 1.0
 
-CREATE OR REPLACE FUNCTION get_zones_for_cell(integer) RETURNS TABLE(zone_id numeric(10,0), share double precision) AS $$
+CREATE OR REPLACE FUNCTION get_zones_for_cell(bigint) RETURNS TABLE(zone_id numeric(10,0), share double precision) AS $$
 BEGIN
   RETURN QUERY 
   WITH cell AS (SELECT *, ST_AREA(taz.geom) AS area FROM voronoi WHERE id = $1),
