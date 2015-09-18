@@ -1,6 +1,4 @@
-SELECT populate_geometry_columns('myschema.my_special_pois'::regclass); 
-
---CREATE INDEX pop_statistic_geom_idx ON pop_statistic USING gist(geom);
+CREATE INDEX pop_statistic_geom_idx ON pop_statistic USING gist(geom);
 
 CREATE TABLE public.pop_statistic_fixed
 (
