@@ -24,16 +24,19 @@ def calculate_population(cellid):
 		return result # cell does not exist, ignore
 	population = cell_pop_row[0]
 
-	cur.execute("SELECT zone_id, share FROM cell_zones WHERE cell_id = %s", (cellid,))
+	cur.execute("SELECT zone_id, area_share, pop_share FROM cell_zones WHERE cell_id = %s", (cellid,))
 	coverages = cur.fetchall()
 
 	if len(coverages) == 0:
 			print("WARNING: Population of " + str(population) + " was lost, because no zones could be found inside cell " + str(cellid) + "!")
 
 	#allocate population to the discovered zones
-	share_sum = sum([share for zone_id, share in coverages])
-	normalized_shares = [(zone_id, share/share_sum) for zone_id, share in coverages]
-	result.extend([(zone_id, share * population) for zone_id, share in normalized_shares])
+	share_sum = sum([area_share * pop_share for zone_id, area_share, pop_share in coverages])
+	if share_sum > 0:
+		normalized_shares = [(zone_id, (area_share * pop_share)/share_sum) for zone_id, area_share, pop_share in coverages]
+		result.extend([(zone_id, share * population) for zone_id, share in normalized_shares])
+	else:
+		print("WARNING: Population of " + str(population) + " was lost, because the share sum of zones is 0 for cell " + str(cellid) + "!")
 
 	return result
 
